@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ContactList } from './ContactList/ContactList';
 import { FilterPage } from './Filter/Filter';
@@ -9,12 +8,8 @@ import { addContacts, deleteContacts } from 'redux/contacts/contactsSlise';
 import { filterContacts } from 'redux/filter/filterSlice';
 
 const App = () => {
-  // let [filterContact, setFilterContact] = useState('');
- 
-
   const contacts = useSelector(state => state.contacts.contacts);
-  const filterItem = useSelector(state=>state.filter.filter)
-  console.log(filterItem);
+  const filterItem = useSelector(state => state.filter.filter);
 
   const dispatch = useDispatch();
 
@@ -27,12 +22,10 @@ const App = () => {
       alert(`${newContact.name} is already in contacts`);
     } else {
       dispatch(addContacts(newContact));
-      
     }
   };
 
   const handleFilter = ({ target: { value } }) => {
-    // setFilterContact((filterContact = value));
     dispatch(filterContacts(value));
   };
 
@@ -47,7 +40,6 @@ const App = () => {
 
   const deleteContact = id => {
     dispatch(deleteContacts(id));
-    
   };
 
   return (

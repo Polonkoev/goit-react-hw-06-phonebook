@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-// import { nanoid } from 'nanoid';
+
 import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
-import { addContacts } from 'redux/contacts/contactsSlise';
+
 import { nanoid } from '@reduxjs/toolkit';
 
-const ContactForm = () => {
+const ContactForm = ({ addContact }) => {
   let [name, setName] = useState('');
   let [number, setNumber] = useState('');
-  const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -25,9 +23,8 @@ const ContactForm = () => {
 
   const submitHandler = event => {
     event.preventDefault();
-    // addContact({ name, number, id: nanoid() });
-    const contact = { name, number, id: nanoid() };
-    dispatch(addContacts(contact));
+    addContact({ name, number, id: nanoid() });
+
     setName((name = ''));
     setNumber((number = ''));
   };
