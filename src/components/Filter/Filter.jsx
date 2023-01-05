@@ -1,34 +1,22 @@
-// import css from './Filter.module.css';
-// export const Filter = ({filterContact, onChange }) => {
-//   return (
-//     <label className={css.label}>
-//       <span className={css.title}>Find contacts by name</span>
-//       <input
-//       name='name'
-//         type="text"
-//         title={'Start typing the contact name..'}
-//         placeholder='Start typing the contact name..'
-//         value={filterContact}
-//         onChange={onChange}
-//       />
-//     </label>
-//   );
-// };
-
+import { useDispatch } from 'react-redux';
 import css from './Filter.module.css';
-export const FilterPage = ({filter,onChange}) => {
+import { filterContacts } from 'redux/filter/filterSlice';
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const handleFilter = ({ target: { value } }) => {
+    dispatch(filterContacts(value));
+  };
+
   return (
     <label className={css.label}>
       <span className={css.title}>Find contacts by name</span>
       <input
-      name='name'
+        name="name"
         type="text"
         title={'Start typing the contact name..'}
-        placeholder='Start typing the contact name..'
-        // value={filterContact}
-        onChange={onChange}
+        placeholder="Start typing the contact name.."
+        onChange={handleFilter}
       />
     </label>
   );
 };
-
